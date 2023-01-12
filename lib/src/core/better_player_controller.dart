@@ -5,6 +5,8 @@ import 'package:better_player/better_player.dart';
 import 'package:better_player/src/configuration/better_player_controller_event.dart';
 import 'package:better_player/src/core/better_player_utils.dart';
 import 'package:better_player/src/subtitles/better_player_subtitle.dart';
+import 'package:better_player/src/subtitles/better_player_subtitles_configuration.dart'
+    as sub_config;
 import 'package:better_player/src/subtitles/better_player_subtitles_factory.dart';
 import 'package:better_player/src/video_player/video_player.dart';
 import 'package:better_player/src/video_player/video_player_platform_interface.dart';
@@ -49,6 +51,13 @@ class BetterPlayerController {
   ///Controls configuration
   BetterPlayerControlsConfiguration get betterPlayerControlsConfiguration =>
       _betterPlayerControlsConfiguration;
+
+  late BetterPlayerSubtitlesConfiguration _betterPlayerSubtitlesConfiguration;
+
+  ///Controls configuration
+  sub_config.BetterPlayerSubtitlesConfiguration
+      get betterPlayerSubtitlesConfiguration =>
+          _BetterPlayerSubtitlesConfiguration;
 
   ///Expose all active eventListeners
   List<Function(BetterPlayerEvent)?> get eventListeners =>
@@ -218,6 +227,8 @@ class BetterPlayerController {
   }) {
     this._betterPlayerControlsConfiguration =
         betterPlayerConfiguration.controlsConfiguration;
+    this._betterPlayerSubtitlesConfiguration =
+        betterPlayerConfiguration.subtitlesConfiguration;
     _eventListeners.add(eventListener);
     if (betterPlayerDataSource != null) {
       setupDataSource(betterPlayerDataSource);
@@ -1270,6 +1281,12 @@ class BetterPlayerController {
   void setBetterPlayerControlsConfiguration(
       BetterPlayerControlsConfiguration betterPlayerControlsConfiguration) {
     this._betterPlayerControlsConfiguration = betterPlayerControlsConfiguration;
+  }
+
+  void setBetterPlayerSubtitlesConfiguration(
+      BetterPlayerSubtitlesConfiguration betterPlayerSubtitlesConfiguration) {
+    this._betterPlayerSubtitlesConfiguration =
+        betterPlayerSubtitlesConfiguration;
   }
 
   /// Add controller internal event.
