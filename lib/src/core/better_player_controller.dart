@@ -55,9 +55,8 @@ class BetterPlayerController {
   late BetterPlayerSubtitlesConfiguration _betterPlayerSubtitlesConfiguration;
 
   ///Controls configuration
-  sub_config.BetterPlayerSubtitlesConfiguration
-      get betterPlayerSubtitlesConfiguration =>
-          _BetterPlayerSubtitlesConfiguration;
+  BetterPlayerSubtitlesConfiguration get betterPlayerSubtitlesConfiguration =>
+      _betterPlayerSubtitlesConfiguration;
 
   ///Expose all active eventListeners
   List<Function(BetterPlayerEvent)?> get eventListeners =>
