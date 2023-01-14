@@ -205,6 +205,9 @@ class BetterPlayerController {
   final StreamController<BetterPlayerControllerEvent>
       _controllerEventStreamController = StreamController.broadcast();
 
+  StreamController<BetterPlayerControllerEvent>
+      get ControllerEventStreamController => _controllerEventStreamController;
+
   ///Stream of internal controller events. Shouldn't be used inside app. For
   ///normal events, use eventListener.
   Stream<BetterPlayerControllerEvent> get controllerEventStream =>
@@ -607,6 +610,7 @@ class BetterPlayerController {
   void exitFullScreen() {
     _isFullScreen = false;
     _postControllerEvent(BetterPlayerControllerEvent.hideFullscreen);
+    _postControllerEvent(BetterPlayerControllerEvent.changeSubtitles);
   }
 
   ///Enables/disables full screen mode based on current fullscreen state.
@@ -614,8 +618,10 @@ class BetterPlayerController {
     _isFullScreen = !_isFullScreen;
     if (_isFullScreen) {
       _postControllerEvent(BetterPlayerControllerEvent.openFullscreen);
+      _postControllerEvent(BetterPlayerControllerEvent.changeSubtitles);
     } else {
       _postControllerEvent(BetterPlayerControllerEvent.hideFullscreen);
+      _postControllerEvent(BetterPlayerControllerEvent.changeSubtitles);
     }
   }
 
