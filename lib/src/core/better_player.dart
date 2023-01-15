@@ -145,6 +145,7 @@ class _BetterPlayerState extends State<BetterPlayer>
   // ignore: avoid_void_async
   Future<void> onFullScreenChanged() async {
     final controller = widget.controller;
+    print("Fullscreen changed to ${controller.isFullScreen}");
     if (controller.isFullScreen && !_isFullScreen) {
       _isFullScreen = true;
       controller
