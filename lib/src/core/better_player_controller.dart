@@ -604,6 +604,7 @@ class BetterPlayerController {
   void enterFullScreen() {
     _isFullScreen = true;
     _postControllerEvent(BetterPlayerControllerEvent.openFullscreen);
+    _postControllerEvent(BetterPlayerControllerEvent.changeSubtitles);
   }
 
   ///Disables full screen mode in player. This will trigger route change.
