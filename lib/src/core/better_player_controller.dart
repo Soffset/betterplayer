@@ -614,6 +614,7 @@ class BetterPlayerController {
     _postControllerEvent(BetterPlayerControllerEvent.hideFullscreen);
     _postControllerEvent(BetterPlayerControllerEvent.changeSubtitles);
     _postControllerEvent(BetterPlayerControllerEvent.play);
+    postEvent(BetterPlayerEvent(BetterPlayerEventType.play));
   }
 
   ///Enables/disables full screen mode based on current fullscreen state.
@@ -622,9 +623,15 @@ class BetterPlayerController {
     if (_isFullScreen) {
       _postControllerEvent(BetterPlayerControllerEvent.openFullscreen);
       _postControllerEvent(BetterPlayerControllerEvent.changeSubtitles);
+      _postControllerEvent(BetterPlayerControllerEvent.play);
+      postEvent(BetterPlayerEvent(BetterPlayerEventType.changedSubtitles));
+      postEvent(BetterPlayerEvent(BetterPlayerEventType.play));
     } else {
       _postControllerEvent(BetterPlayerControllerEvent.hideFullscreen);
       _postControllerEvent(BetterPlayerControllerEvent.changeSubtitles);
+      _postControllerEvent(BetterPlayerControllerEvent.play);
+      postEvent(BetterPlayerEvent(BetterPlayerEventType.play));
+      postEvent(BetterPlayerEvent(BetterPlayerEventType.changedSubtitles));
     }
   }
 

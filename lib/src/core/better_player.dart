@@ -152,9 +152,9 @@ class _BetterPlayerState extends State<BetterPlayer>
           .postEvent(BetterPlayerEvent(BetterPlayerEventType.openFullscreen));
       controller
           .postEvent(BetterPlayerEvent(BetterPlayerEventType.changedSubtitles));
+      controller.postEvent(BetterPlayerEvent(BetterPlayerEventType.play));
 
       await _pushFullScreenWidget(context);
-      setState(() {});
     } else if (_isFullScreen) {
       Navigator.of(context, rootNavigator: true).pop();
       _isFullScreen = false;
@@ -162,7 +162,7 @@ class _BetterPlayerState extends State<BetterPlayer>
           .postEvent(BetterPlayerEvent(BetterPlayerEventType.hideFullscreen));
       controller
           .postEvent(BetterPlayerEvent(BetterPlayerEventType.changedSubtitles));
-      setState(() {});
+      controller.postEvent(BetterPlayerEvent(BetterPlayerEventType.play));
     }
   }
 
