@@ -282,10 +282,11 @@ class _BetterPlayerMaterialControlsState
       duration: _controlsConfiguration.controlsHideTime,
       onEnd: _onPlayerHide,
       child: Container(
-        height: _controlsConfiguration.controlBarHeight + 20.0,
+        height: _controlsConfiguration.controlBarHeight + 0,
         child: Column(
           children: <Widget>[
-            Container(
+            Expanded(
+              flex: 1,
               child: Row(
                 children: [
                   if (_controlsConfiguration.enablePlayPause)
