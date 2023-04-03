@@ -285,32 +285,30 @@ class _BetterPlayerMaterialControlsState
         height: _controlsConfiguration.controlBarHeight + 20.0,
         child: Column(
           children: <Widget>[
-            Expanded(
-              flex: 75,
-              child: SizedBox(),
-            ),
-            Row(
-              children: [
-                if (_controlsConfiguration.enablePlayPause)
-                  _buildPlayPause(_controller!)
-                else
-                  const SizedBox(),
-                if (_betterPlayerController!.isLiveStream())
-                  _buildLiveWidget()
-                else
-                  _controlsConfiguration.enableProgressText
-                      ? Expanded(child: _buildPosition())
-                      : const SizedBox(),
-                const Spacer(),
-                if (_controlsConfiguration.enableMute)
-                  _buildMuteButton(_controller)
-                else
-                  const SizedBox(),
-                if (_controlsConfiguration.enableFullscreen)
-                  _buildExpandButton()
-                else
-                  const SizedBox(),
-              ],
+            Container(
+              child: Row(
+                children: [
+                  if (_controlsConfiguration.enablePlayPause)
+                    _buildPlayPause(_controller!)
+                  else
+                    const SizedBox(),
+                  if (_betterPlayerController!.isLiveStream())
+                    _buildLiveWidget()
+                  else
+                    _controlsConfiguration.enableProgressText
+                        ? Expanded(child: _buildPosition())
+                        : const SizedBox(),
+                  const Spacer(),
+                  if (_controlsConfiguration.enableMute)
+                    _buildMuteButton(_controller)
+                  else
+                    const SizedBox(),
+                  if (_controlsConfiguration.enableFullscreen)
+                    _buildExpandButton()
+                  else
+                    const SizedBox(),
+                ],
+              ),
             ),
             if (_betterPlayerController!.isLiveStream())
               const SizedBox()
