@@ -282,33 +282,35 @@ class _BetterPlayerMaterialControlsState
       duration: _controlsConfiguration.controlsHideTime,
       onEnd: _onPlayerHide,
       child: Container(
-        height: _controlsConfiguration.controlBarHeight + 0,
+        height: _controlsConfiguration.controlBarHeight,
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 1,
-              child: Row(
-                children: [
-                  if (_controlsConfiguration.enablePlayPause)
-                    _buildPlayPause(_controller!)
-                  else
-                    const SizedBox(),
-                  if (_betterPlayerController!.isLiveStream())
-                    _buildLiveWidget()
-                  else
-                    _controlsConfiguration.enableProgressText
-                        ? Expanded(child: _buildPosition())
-                        : const SizedBox(),
-                  const Spacer(),
-                  if (_controlsConfiguration.enableMute)
-                    _buildMuteButton(_controller)
-                  else
-                    const SizedBox(),
-                  if (_controlsConfiguration.enableFullscreen)
-                    _buildExpandButton()
-                  else
-                    const SizedBox(),
-                ],
+              flex: 55,
+              child: Container(
+                child: Row(
+                  children: [
+                    if (_controlsConfiguration.enablePlayPause)
+                      _buildPlayPause(_controller!)
+                    else
+                      const SizedBox(),
+                    if (_betterPlayerController!.isLiveStream())
+                      _buildLiveWidget()
+                    else
+                      _controlsConfiguration.enableProgressText
+                          ? Expanded(child: _buildPosition())
+                          : const SizedBox(),
+                    const Spacer(),
+                    if (_controlsConfiguration.enableMute)
+                      _buildMuteButton(_controller)
+                    else
+                      const SizedBox(),
+                    if (_controlsConfiguration.enableFullscreen)
+                      _buildExpandButton()
+                    else
+                      const SizedBox(),
+                  ],
+                ),
               ),
             ),
             if (_betterPlayerController!.isLiveStream())
@@ -383,12 +385,18 @@ class _BetterPlayerMaterialControlsState
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 if (_controlsConfiguration.enableSkips)
-                  Expanded(child: _buildSkipButton())
+                  Expanded(child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: _buildSkipButton(),
+                  ))
                 else
                   const SizedBox(),
                 Expanded(child: _buildReplayButton(_controller!)),
                 if (_controlsConfiguration.enableSkips)
-                  Expanded(child: _buildForwardButton())
+                  Expanded(child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: _buildForwardButton(),
+                  ))
                 else
                   const SizedBox(),
               ],
@@ -397,34 +405,38 @@ class _BetterPlayerMaterialControlsState
   }
 
   Widget _buildHitAreaClickableButton(
-      {Widget? icon, required void Function() onClicked}) {
-    return Container(
-      constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
-      child: BetterPlayerMaterialClickableWidget(
-        onTap: onClicked,
-        child: Align(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(48),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Stack(
-                children: [icon!],
+      {
+    Widget? icon, required void Function() onClicked}) {
+      return AspectRatio(
+        aspectRatio: 1,
+        child: Container(
+          constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
+          child: BetterPlayerMaterialClickableWidget(
+            onTap: onClicked,
+            child: Align(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Stack(
+                    children: [icon!],
+                  ),
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildSkipButton() {
     return _buildHitAreaClickableButton(
       icon: Icon(
         _controlsConfiguration.skipBackIcon,
-        size: 24,
+        size: 36,
         color: _controlsConfiguration.iconsColor,
       ),
       onClicked: skipBack,
@@ -435,7 +447,7 @@ class _BetterPlayerMaterialControlsState
     return _buildHitAreaClickableButton(
       icon: Icon(
         _controlsConfiguration.skipForwardIcon,
-        size: 24,
+        size: 36,
         color: _controlsConfiguration.iconsColor,
       ),
       onClicked: skipForward,
@@ -448,14 +460,14 @@ class _BetterPlayerMaterialControlsState
       icon: isFinished
           ? Icon(
               Icons.replay,
-              size: 42,
+              size: 78,
               color: _controlsConfiguration.iconsColor,
             )
           : Icon(
               controller.value.isPlaying
                   ? _controlsConfiguration.pauseIcon
                   : _controlsConfiguration.playIcon,
-              size: 42,
+              size: 78,
               color: _controlsConfiguration.iconsColor,
             ),
       onClicked: () {
@@ -698,7 +710,7 @@ class _BetterPlayerMaterialControlsState
       flex: 40,
       child: Container(
         alignment: Alignment.bottomCenter,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: BetterPlayerMaterialVideoProgressBar(
           _controller,
           _betterPlayerController,
