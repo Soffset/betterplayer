@@ -385,16 +385,18 @@ class _BetterPlayerMaterialControlsState
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 if (_controlsConfiguration.enableSkips)
-                  Expanded(child: Padding(
-                    padding: const EdgeInsets.all(10),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.all(30),
                     child: _buildSkipButton(),
                   ))
                 else
                   const SizedBox(),
                 Expanded(child: _buildReplayButton(_controller!)),
                 if (_controlsConfiguration.enableSkips)
-                  Expanded(child: Padding(
-                    padding: const EdgeInsets.all(10),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.all(30),
                     child: _buildForwardButton(),
                   ))
                 else
@@ -405,31 +407,30 @@ class _BetterPlayerMaterialControlsState
   }
 
   Widget _buildHitAreaClickableButton(
-      {
-    Widget? icon, required void Function() onClicked}) {
-      return AspectRatio(
-        aspectRatio: 1,
-        child: Container(
-          constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
-          child: BetterPlayerMaterialClickableWidget(
-            onTap: onClicked,
-            child: Align(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(0),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Stack(
-                    children: [icon!],
-                  ),
-                ),
+      {Widget? icon, required void Function() onClicked}) {
+    return AspectRatio(
+      aspectRatio: 1,
+      child: Container(
+        constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
+        child: BetterPlayerMaterialClickableWidget(
+          onTap: onClicked,
+          child: Align(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(0),
               ),
+              child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: icon,
+                  )),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 
   Widget _buildSkipButton() {
